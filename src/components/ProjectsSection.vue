@@ -8,32 +8,59 @@ interface Project {
   githubUrl: string;
   tags: string[];
   learnings: string[];
+  highlight?: boolean;
 }
 
 const projects: Project[] = [
   {
-    title: 'E-commerce Modular',
-    description: 'Sistema de e-commerce com arquitetura modular em Django, incluindo carrinho, catálogo, pedidos, pagamentos e gestão de usuários.',
-    githubUrl: 'https://github.com/GabrielOlisil',
-    tags: ['Python', 'Django', 'PostgreSQL'],
+    title: 'DungeonWorldFichaV2',
+    description: 'Sistema de fichas para Dungeon World com arquitetura de microserviços. Backend em .NET, serviço de dados em TypeScript, e frontend Vue — todos orquestrados com Docker Compose. Utiliza RabbitMQ para comunicação assíncrona entre serviços e WebSockets para atualização em tempo real das fichas dos jogadores.',
+    githubUrl: 'https://github.com/GabrielOlisil/DungeonWorldFichaV2',
+    tags: ['C#', '.NET', 'TypeScript', 'Vue', 'RabbitMQ', 'WebSocket', 'Docker'],
     learnings: [
-      'Arquitetura modular com Django Apps',
-      'Integração de sistemas de pagamento',
-      'Modelagem de dados relacional',
+      'Integração de microserviços com RabbitMQ (message broker)',
+      'Comunicação em tempo real com WebSockets',
+      'Orquestração de múltiplos serviços com Docker Compose',
+      'Arquitetura distribuída — "bazuca pra matar formiga", mas o aprendizado valeu',
+    ],
+    highlight: true,
+  },
+  {
+    title: 'AriCrimes',
+    description: 'Solução completa para gerenciamento de ocorrências urbanas, composta por 4 repositórios: API (Python), app mobile (Flutter), file server (Node.js) e painel admin (Vue). Integra Google APIs e geolocalização para gerar mapas de calor de crimes na cidade.',
+    githubUrl: 'https://github.com/GabrielOlisil/AriCrimesMobile',
+    tags: ['Flutter', 'Python', 'Vue', 'Node.js', 'Google Maps API', 'Geolocation', 'Docker'],
+    learnings: [
+      'Integração com Google Maps API e geolocalização',
+      'Geração de mapas de calor (heatmaps) a partir de dados geolocalizados',
+      'Arquitetura multi-repo: API, Mobile, File Server e Admin',
+      'Comunicação entre serviços distintos (mobile ↔ API ↔ file server)',
     ],
   },
   {
-    title: 'App de Gestão de Patrimônio',
-    description: 'Aplicativo Flutter para rastreamento de patrimônio institucional com Firebase Firestore, usando MVVM + Provider.',
-    githubUrl: 'https://github.com/GabrielOlisil',
+    title: 'InsertGeneration',
+    description: 'Ferramenta em C# que gera comandos SQL INSERT automaticamente a partir de entidades. Projeto focado em explorar princípios SOLID, com uso de inversão de controle via interfaces para permitir suporte a múltiplos bancos de dados com um único código principal.',
+    githubUrl: 'https://github.com/GabrielOlisil/InsertGeneration',
+    tags: ['C#', '.NET', 'SOLID'],
+    learnings: [
+      'Inversão de Controle (IoC) com interfaces',
+      'Suporte a múltiplos bancos de dados com um único código',
+      'Princípios SOLID aplicados na prática',
+      'Geração dinâmica de SQL via reflexão',
+    ],
+  },
+  {
+    title: 'Gestão de Patrimônio',
+    description: 'Aplicativo Flutter para rastreamento de patrimônio institucional ("tombamentos") utilizando Firebase como BaaS (Backend as a Service). Arquitetura MVVM com Provider para gerenciamento de estado.',
+    githubUrl: 'https://github.com/GabrielOlisil/tombamentos',
     tags: ['Flutter', 'Firebase', 'Dart'],
     learnings: [
-      'Padrão MVVM com Provider',
+      'Firebase como Backend as a Service (BaaS)',
+      'Padrão MVVM com Provider para gerenciamento de estado',
       'CRUD completo com Firestore',
       'Paginação e filtros inteligentes',
     ],
   },
-  // Adicione mais projetos aqui seguindo o mesmo formato
 ];
 </script>
 
@@ -50,11 +77,15 @@ const projects: Project[] = [
           v-for="project in projects"
           :key="project.title"
           class="card bg-base-200 shadow-xl border border-base-300"
+          :class="{ 'md:col-span-2 border-primary/30': project.highlight }"
         >
           <div class="card-body">
-            <h3 class="card-title text-primary">
-              {{ project.title }}
-            </h3>
+            <div class="flex items-center gap-2">
+              <h3 class="card-title text-primary">
+                {{ project.title }}
+              </h3>
+              <span v-if="project.highlight" class="badge badge-primary badge-sm">destaque</span>
+            </div>
             <p class="text-base-content/70 text-sm">
               {{ project.description }}
             </p>
