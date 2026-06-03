@@ -10,7 +10,7 @@ import GithubIcon from './GithubIcon.vue';
       <div class="animate-fade-in-up">
         <div class="avatar placeholder">
           <div class="bg-primary text-primary-content w-48 h-48 rounded-full ring ring-primary ring-offset-base-100 ring-offset-4 shadow-2xl">
-            <span class="text-6xl font-bold">GO</span>
+            <img src="/profile.jpeg" alt="Gabriel Oliveira" class="w-full h-full object-cover" />
           </div>
         </div>
       </div>

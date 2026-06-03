@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@lucide/vue": "^1.17.0",
+    "@selemondev/svgl-vue": "^2.13.0",
     "@tailwindcss/vite": "^4.3.0",
     "daisyui": "^5.5.20",
     "pinia": "^3.0.4",

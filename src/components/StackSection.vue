@@ -1,16 +1,24 @@
 <script setup lang="ts">
+import {
+  SvglCSharpLogo,
+  SvglMicrosoftNETLogo,
+  SvglDockerLogo,
+  SvglVueLogo,
+  SvglTypeScriptLogo,
+} from '@selemondev/svgl-vue';
+import { type Component } from 'vue';
+
 interface StackItem {
   name: string;
-  icon: string;
-  color: string;
+  icon: Component;
 }
 
 const stack: StackItem[] = [
-  { name: 'C#', icon: '⚙️', color: 'badge-primary' },
-  { name: '.NET', icon: '🟣', color: 'badge-secondary' },
-  { name: 'Docker', icon: '🐳', color: 'badge-info' },
-  { name: 'Vue.js', icon: '💚', color: 'badge-success' },
-  { name: 'TypeScript', icon: '🔷', color: 'badge-accent' },
+  { name: 'C#', icon: SvglCSharpLogo },
+  { name: '.NET', icon: SvglMicrosoftNETLogo },
+  { name: 'Docker', icon: SvglDockerLogo },
+  { name: 'Vue.js', icon: SvglVueLogo },
+  { name: 'TypeScript', icon: SvglTypeScriptLogo },
 ];
 </script>
 
@@ -24,10 +32,11 @@ const stack: StackItem[] = [
         <div
           v-for="tech in stack"
           :key="tech.name"
-          class="badge gap-2 p-5 text-lg font-medium cursor-default"
-          :class="tech.color"
+          class="badge badge-outline gap-3 px-5 py-4 text-base font-medium cursor-default"
         >
-          <span class="text-xl">{{ tech.icon }}</span>
+          <div class="w-5 h-5 shrink-0 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full">
+            <component :is="tech.icon" />
+          </div>
           {{ tech.name }}
         </div>
       </div>
